@@ -2,7 +2,7 @@
 import "./App.css";
 import Expenses from "./components/Expenses/Expenses.js";
 
-function App() {
+const App = () => {
   const expenses = [
     { title: "Toilet", amount: "167", date: new Date(2022, 3, 4) },
     { title: "Milk", amount: "55", date: new Date(2022, 11, 27) },
@@ -15,6 +15,6 @@ function App() {
       <Expenses items={expenses} />
     </div>
   );
-}
+};
 
 export default App;
