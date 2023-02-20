@@ -9,23 +9,26 @@ const Cart = (props) => {
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
 
   const cartItemRemoveHandler = (id) => {
-    console.log("onRemove");
+    console.log(id);
   };
   const cartItemAddHandler = (item) => {
-    console.log("onAdd");
+    console.log(item);
   };
   const cartItems = (
     <ul className={classes["cart-items"]}>
       {cartCtx.items.map((item) => (
         <CartItem
-          {...item}
+          //  {...item}
           key={item.id}
           name={item.name}
           price={item.price}
           amount={item.amount}
+          // onRemove={() => cartItemRemoveHandler(item.id)}
+          //or use
           onRemove={cartItemRemoveHandler.bind(null, item.id)}
           // The bind() is an inbuilt method in React that is used to pass the data as an
           //argument to the function of a class based component.
+          // onAdd={() => cartItemAddHandler(item)}
           onAdd={cartItemAddHandler.bind(null, item)}
         />
       ))}

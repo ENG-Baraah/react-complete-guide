@@ -25,6 +25,7 @@ const MealItem = (props) => {
       </div>
       <div>
         <MealItemForm onAddToCart={addToCartHandler} id={props.id} />
+        {/* get amount from user*/}
       </div>
     </li>
   );

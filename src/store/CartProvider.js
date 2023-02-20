@@ -2,15 +2,34 @@ import React, { useReducer } from "react";
 import CartContext from "./cart-context";
 
 const defaultCartState = {
-  items: [],
+  items: [], //item={id,name,amount,price}
   totalAmount: 0,
 };
 
 const cartReducer = (state, action) => {
+  console.log(state);
+  console.log(action);
   if (action.type === "ADD") {
-    const updatedItems = state.items.concat(action.item);
     const updatedTotalAmount =
       state.totalAmount + action.item.price * action.item.amount;
+
+    const existingCartItemIndex = state.items.findIndex(
+      (item) => item.id === action.item.id
+    );
+    const existingCartItem = state.items[existingCartItemIndex];
+
+    let updatedItems; //update array
+    if (existingCartItem) {
+      const updatedItem = {
+        ...existingCartItem, //id,name,price
+        amount: existingCartItem.amount + action.item.amount, //update amount in item
+      };
+      updatedItems = [...state.items];
+      updatedItems[existingCartItemIndex] = updatedItem;
+    } else {
+      updatedItems = state.items.concat(action.item);
+    }
+
     return { items: updatedItems, totalAmount: updatedTotalAmount };
   }
   return defaultCartState;
